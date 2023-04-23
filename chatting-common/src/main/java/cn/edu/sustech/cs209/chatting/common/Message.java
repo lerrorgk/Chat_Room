@@ -1,35 +1,61 @@
 package cn.edu.sustech.cs209.chatting.common;
 
-public class Message {
+import java.io.Serializable;
+import java.util.Date;
 
-    private Long timestamp;
+public class Message implements Serializable {
+    private User sender;
+    private User receiver;
+    private String content;
+    private Date sendTime;
 
-    private String sentBy;
 
-    private String sendTo;
-
-    private String data;
-
-    public Message(Long timestamp, String sentBy, String sendTo, String data) {
-        this.timestamp = timestamp;
-        this.sentBy = sentBy;
-        this.sendTo = sendTo;
-        this.data = data;
+    public Message(User sender, String receiverName,String msg) {
+        this.content = msg;
+        this.sender = sender;
+        this.receiver = new User(receiverName);
     }
 
-    public Long getTimestamp() {
-        return timestamp;
+    public Message(User sender, User receiver, String content, Date sendTime) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.content = content;
+        this.sendTime = sendTime;
     }
 
-    public String getSentBy() {
-        return sentBy;
+    public Message() {
     }
 
-    public String getSendTo() {
-        return sendTo;
+
+
+    public User getSender() {
+        return sender;
+    }
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+    public User getReceiver() {
+        return receiver;
+    }
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+    public Date getSendTime() {
+        return sendTime;
+    }
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
     }
 
-    public String getData() {
-        return data;
+    @Override
+    public String toString() {
+        return "Message [sender=" + sender + ", receiver=" + receiver + ", content=" + content + ", sendTime=" + sendTime
+                + "]";
     }
 }
