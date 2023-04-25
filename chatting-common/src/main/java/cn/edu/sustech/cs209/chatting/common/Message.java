@@ -2,7 +2,6 @@ package cn.edu.sustech.cs209.chatting.common;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Date;
 
 public class Message implements Serializable {
 

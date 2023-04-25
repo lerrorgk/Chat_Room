@@ -8,12 +8,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class DataBuffer {
+
   public static User currentUser;
   public static List<String> userList;
   public static Socket clientSeocket;
@@ -23,11 +22,10 @@ public class DataBuffer {
   public static ObjectOutputStream oos;
   public static ObjectInputStream ois;
   public static Map<String, String> configMap;
-  public static String ip ;
-  public static final int RECEIVE_FILE_PORT = 56667;
+  public static String ip;
 
 
-  static{
+  static {
     userList = new ArrayList<>();
     messageList = new ArrayList<>();
     groupMap = new HashMap<>();
@@ -41,5 +39,6 @@ public class DataBuffer {
     }
   }
 
-  private DataBuffer(){}
+  private DataBuffer() {
+  }
 }

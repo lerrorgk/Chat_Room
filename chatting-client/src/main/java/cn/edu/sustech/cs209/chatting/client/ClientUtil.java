@@ -1,13 +1,12 @@
 package cn.edu.sustech.cs209.chatting.client;
 
-import cn.edu.sustech.cs209.chatting.common.*;
+import cn.edu.sustech.cs209.chatting.common.Request;
+import cn.edu.sustech.cs209.chatting.common.Response;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientUtil {
 
-  /** 发送请求对象,主动接收响应 */
+
   public static Response sendRequest(Request request) throws IOException {
     Response response = null;
     try {
@@ -21,7 +20,7 @@ public class ClientUtil {
     return response;
   }
 
-  /** 发送请求对象,不主动接收响应 */
+
   public static void sendRequestNoResponse(Request request) throws IOException {
     try {
       DataBuffer.oos.writeObject(request); // 发送请求

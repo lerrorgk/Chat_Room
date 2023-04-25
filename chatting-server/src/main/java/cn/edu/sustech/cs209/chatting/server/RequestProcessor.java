@@ -1,14 +1,14 @@
 package cn.edu.sustech.cs209.chatting.server;
 
-import cn.edu.sustech.cs209.chatting.common.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import cn.edu.sustech.cs209.chatting.common.Message;
+import cn.edu.sustech.cs209.chatting.common.Request;
+import cn.edu.sustech.cs209.chatting.common.Response;
+import cn.edu.sustech.cs209.chatting.common.Type;
+import cn.edu.sustech.cs209.chatting.common.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.List;
 
 public class RequestProcessor implements Runnable {
@@ -64,7 +64,7 @@ public class RequestProcessor implements Runnable {
 
   private void chatList(OnlineClientIOCache currentClientIOCache, Request request) {
     String username = request.getUsername();
-    List <Message> messages = UserService.getChatList(username);
+    List<Message> messages = UserService.getChatList(username);
     Message[] messageArray = new Message[messages.size()];
     messages.toArray(messageArray);
 
@@ -83,12 +83,13 @@ public class RequestProcessor implements Runnable {
     }
   }
 
-  private void register(OnlineClientIOCache currentClientIOCache,Request request) throws IOException {
+  private void register(OnlineClientIOCache currentClientIOCache, Request request)
+      throws IOException {
     String username = request.getUsername();
     String password = request.getPassword();
     User newUser = new User(username, password);
     Response response = new Response(Type.register);
-    if(UserService.checkUserName(username)) {
+    if (UserService.checkUserName(username)) {
       response.setValid(false);
     } else {
       response.setValid(true);
@@ -157,17 +158,18 @@ public class RequestProcessor implements Runnable {
   }
 
   private void groupChat(Request request) {
-    UserService.addMessage(request.getSender(), null, request.getContent(), request.getGroupName(), String.join(",", request.getGroupMembers()));
+    UserService.addMessage(request.getSender(), null, request.getContent(), request.getGroupName(),
+        String.join(",", request.getGroupMembers()));
     Response response = new Response(Type.groupChat);
     response.setContent(request.getContent());
     response.setSender(request.getSender());
     response.setGroupMembers(request.getGroupMembers());
     response.setGroupName(request.getGroupName());
-    for(String mem: request.getGroupMembers()){
-      if(mem.equals(request.getSender())){
+    for (String mem : request.getGroupMembers()) {
+      if (mem.equals(request.getSender())) {
         continue;
       }
-      if(!DataBuffer.onlineUserIOCacheMap.containsKey(new User(mem))){
+      if (!DataBuffer.onlineUserIOCacheMap.containsKey(new User(mem))) {
         continue;
       }
       System.out.println(request.getSender() + "把群聊消息发送给:" + mem);

@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 
 
 public class DataBuffer {
+
   // 服务器端套接字
   public static ServerSocket serverSocket;
   //在线用户的IO Map
@@ -19,7 +20,7 @@ public class DataBuffer {
 
   public static Map<String, String> configMap;
 
-  static{
+  static {
     // 初始化
     onlineUserIOCacheMap = new ConcurrentSkipListMap<>();
     onlineUsersList = new ArrayList<>();

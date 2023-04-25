@@ -75,8 +75,6 @@ public class Request implements Serializable {
   }
 
 
-
-
   public String getSender() {
     return sender;
   }

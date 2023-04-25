@@ -24,7 +24,8 @@ public class UserService {
     PreparedStatement stmt = null;
     try {
       con = DriverManager.getConnection(pUrl, pUser, pPassword);
-      stmt = con.prepareStatement("INSERT INTO messages (sender, receiver, content) VALUES (?, ?, ?)");
+      stmt = con.prepareStatement(
+          "INSERT INTO messages (sender, receiver, content) VALUES (?, ?, ?)");
       stmt.setString(1, sender);
       stmt.setString(2, receiver);
       stmt.setString(3, content);
@@ -35,12 +36,14 @@ public class UserService {
     }
   }
 
-  public static void addMessage(String sender, String receiver, String content, String groupName, String groupMembers){
+  public static void addMessage(String sender, String receiver, String content, String groupName,
+      String groupMembers) {
     Connection con = null;
     PreparedStatement stmt = null;
     try {
       con = DriverManager.getConnection(pUrl, pUser, pPassword);
-      stmt = con.prepareStatement("INSERT INTO messages (sender, receiver, content, groupName, groupMembers) VALUES (?, ?, ?, ?,?)");
+      stmt = con.prepareStatement(
+          "INSERT INTO messages (sender, receiver, content, groupName, groupMembers) VALUES (?, ?, ?, ?,?)");
       stmt.setString(1, sender);
       stmt.setString(2, receiver);
       stmt.setString(3, content);
@@ -53,14 +56,15 @@ public class UserService {
     }
   }
 
-  public static List<Message> getChatList(String sender){
+  public static List<Message> getChatList(String sender) {
 //    String like = "%"+sender+"%";
     Connection con = null;
     PreparedStatement stmt = null;
     List<Message> messages = new ArrayList<>();
     try {
       con = DriverManager.getConnection(pUrl, pUser, pPassword);
-      stmt = con.prepareStatement("SELECT * FROM messages WHERE (sender = ? OR receiver = ?) AND groupName IS NULL");
+      stmt = con.prepareStatement(
+          "SELECT * FROM messages WHERE (sender = ? OR receiver = ?) AND groupName IS NULL");
 //      stmt = con.prepareStatement("SELECT * FROM messages WHERE sender = ? OR receiver = ? OR groupMembers LIKE ?");
       stmt.setString(1, sender);
       stmt.setString(2, sender);

@@ -1,7 +1,6 @@
 package cn.edu.sustech.cs209.chatting.common;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Response implements Serializable {
 
@@ -18,10 +17,6 @@ public class Response implements Serializable {
 
   private int currentOnlineCnt;
 
-
-  public Response() {
-    this.isValid = false;
-  }
 
   public Response(Type type) {
     this.type = type;

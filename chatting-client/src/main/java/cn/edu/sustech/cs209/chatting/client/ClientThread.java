@@ -1,13 +1,10 @@
 package cn.edu.sustech.cs209.chatting.client;
 
-import cn.edu.sustech.cs209.chatting.common.*;
+import cn.edu.sustech.cs209.chatting.common.Response;
 import com.vdurmont.emoji.EmojiParser;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 public class ClientThread extends Thread {

@@ -399,7 +399,7 @@ public class Controller implements Initializable {
 //      System.out.println(s);
 //    }
     for (Message m : DataBuffer.messageList) {
-      if(m.isGroupMessage()) {
+      if (m.isGroupMessage()) {
         continue;
       }
       if (m.getSender().getUsername().equals(sender) && m.getReceiver().getUsername()
@@ -449,7 +449,7 @@ public class Controller implements Initializable {
 //    }
     List<Message> messages = new ArrayList<>();
     for (Message m : DataBuffer.messageList) {
-      if(!m.isGroupMessage()) {
+      if (!m.isGroupMessage()) {
         continue;
       }
       if (m.getGroupName().equals(groupName)) {
