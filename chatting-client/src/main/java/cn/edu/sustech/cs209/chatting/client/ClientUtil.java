@@ -14,17 +14,7 @@ public class ClientUtil {
       // 发送请求
       DataBuffer.oos.writeObject(request);
       DataBuffer.oos.flush();
-      System.out.println("客户端发送了请求对象:" + request.getType());
-
-      if(!"exit".equals(request)){
-        // 获取响应
-        response = (Response) DataBuffer.ois.readObject();
-        System.out.println("客户端获取到了响应对象:" + response.getUsersList());
-      }else{
-        System.out.println("客户端断开连接了");
-      }
-    } catch (IOException e) {
-      throw e;
+      response = (Response) DataBuffer.ois.readObject();
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
@@ -36,7 +26,7 @@ public class ClientUtil {
     try {
       DataBuffer.oos.writeObject(request); // 发送请求
       DataBuffer.oos.flush();
-      System.out.println("客户端发送了请求对象:" + request.getType());
+//      System.out.println("客户端发送了请求对象:" + request.getType());
     } catch (IOException e) {
       throw e;
     }

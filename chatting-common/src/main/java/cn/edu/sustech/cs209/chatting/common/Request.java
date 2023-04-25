@@ -1,20 +1,37 @@
 package cn.edu.sustech.cs209.chatting.common;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Request implements Serializable {
 
   private Type type;
-  private Map<String, Object> attributesMap;
+  String username;
+  String password;
+  private String content;
+  private String receiver;
+  private String sender;
+  private String groupName;
+  private String[] groupMembers;
+  boolean isGroupMessage;
 
-  public Request() {
-    this.attributesMap = new HashMap<String, Object>();
+  public Request(Type register) {
+    this.type = register;
   }
 
-  public Request(Type type) {
-    this.type = type;
+  public String[] getGroupMembers() {
+    return groupMembers;
+  }
+
+  public void setGroupMembers(String[] groupMembers) {
+    this.groupMembers = groupMembers;
+  }
+
+  public String getReceiver() {
+    return receiver;
+  }
+
+  public void setReceiver(String receiver) {
+    this.receiver = receiver;
   }
 
   public Type getType() {
@@ -25,23 +42,55 @@ public class Request implements Serializable {
     this.type = type;
   }
 
-  public Map<String, Object> getAttributesMap() {
-    return attributesMap;
+  public boolean isGroupMessage() {
+    return isGroupMessage;
   }
 
-  public Object getAttribute(String name) {
-    return this.attributesMap.get(name);
+  public void setGroupMessage(boolean groupMessage) {
+    isGroupMessage = groupMessage;
   }
 
-  public void setAttribute(String name, Object value) {
-    this.attributesMap.put(name, value);
+  public String getUsername() {
+    return username;
   }
 
-  public void removeAttribute(String name) {
-    this.attributesMap.remove(name);
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public void clearAttribute() {
-    this.attributesMap.clear();
+  public String getPassword() {
+    return password;
   }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+
+
+
+  public String getSender() {
+    return sender;
+  }
+
+  public void setSender(String sender) {
+    this.sender = sender;
+  }
+
+  public String getGroupName() {
+    return groupName;
+  }
+
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
+
 }

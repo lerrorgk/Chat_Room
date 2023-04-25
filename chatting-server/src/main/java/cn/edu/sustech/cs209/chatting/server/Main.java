@@ -14,6 +14,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        UserService.initUser();
 
         new Thread(new Runnable() {//启动新线程进行客户端连接监听
             public void run() {
