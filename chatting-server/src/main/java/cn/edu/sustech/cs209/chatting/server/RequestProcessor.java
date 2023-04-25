@@ -65,9 +65,13 @@ public class RequestProcessor implements Runnable {
   private void chatList(OnlineClientIOCache currentClientIOCache, Request request) {
     String username = request.getUsername();
     List <Message> messages = UserService.getChatList(username);
-    System.out.println(messages);
     Message[] messageArray = new Message[messages.size()];
     messages.toArray(messageArray);
+
+//    System.out.println("messageArray:");
+//    for (Message message : messageArray) {
+//      System.out.println(message);
+//    }
     Response response = new Response(Type.chatList);
     response.setValid(true);
     response.setMessages(messageArray);
@@ -141,11 +145,11 @@ public class RequestProcessor implements Runnable {
   }
 
   public void privateChat(Request request) throws IOException {
+    UserService.addMessage(request.getSender(), request.getReceiver(), request.getContent());
     Response response = new Response(Type.privateChat);
     response.setContent(request.getContent());
     response.setSender(request.getSender());
     response.setReceiver(request.getReceiver());
-    UserService.addMessage(request.getSender(), request.getReceiver(), request.getContent());
     User receiver = new User(request.getReceiver());
     OnlineClientIOCache io = DataBuffer.onlineUserIOCacheMap.get(receiver);
     io.getOos().writeObject(response);
@@ -153,6 +157,7 @@ public class RequestProcessor implements Runnable {
   }
 
   private void groupChat(Request request) {
+    UserService.addMessage(request.getSender(), null, request.getContent(), request.getGroupName(), String.join(",", request.getGroupMembers()));
     Response response = new Response(Type.groupChat);
     response.setContent(request.getContent());
     response.setSender(request.getSender());
@@ -165,7 +170,6 @@ public class RequestProcessor implements Runnable {
       if(!DataBuffer.onlineUserIOCacheMap.containsKey(new User(mem))){
         continue;
       }
-      UserService.addMessage(request.getSender(), mem, request.getContent(), request.getGroupName(), String.join(",", request.getGroupMembers()));
       System.out.println(request.getSender() + "把群聊消息发送给:" + mem);
       User receiver = new User(mem);
       OnlineClientIOCache io = DataBuffer.onlineUserIOCacheMap.get(receiver);

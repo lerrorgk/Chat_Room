@@ -150,9 +150,13 @@ public class Controller implements Initializable {
 //    request2.setUsername(input.get());
 //    try {
 //      Response b = ClientUtil.sendRequest(request2);
-//
+//      System.out.println(b.isValid());
 //      if (b.isValid()) {
 //        Message[] messages = b.getMessages();
+//        System.out.println("b.getMessages():" + messages.length);
+//        for(Message m : messages){
+//          System.out.println(m.getSender().getUsername() + " " + m.getReceiver().getUsername() + " " + m.getContent());
+//        }
 //        for (Message m : messages) {
 ////          if (m.getGroupName() != null) {
 ////            addGroupMessage(m.getSender().getUsername(), m.getReceiver().getUsername(),

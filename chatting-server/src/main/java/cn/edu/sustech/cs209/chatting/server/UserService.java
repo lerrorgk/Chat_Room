@@ -54,7 +54,7 @@ public class UserService {
   }
 
   public static List<Message> getChatList(String sender){
-//    String like = "'%"+sender+"%'";
+//    String like = "%"+sender+"%";
     Connection con = null;
     PreparedStatement stmt = null;
     List<Message> messages = new ArrayList<>();
@@ -75,8 +75,9 @@ public class UserService {
         message.setReceiver(user2);
         message.setContent(rs.getString("content"));
         message.setGroupName(rs.getString("groupName"));
-//        String[] ms = rs.getString("groupMembers").split(",");
-//        message.setGroupMembers(ms);
+        String[] ms = rs.getString("groupMembers").split(",");
+        message.setGroupMembers(ms);
+        System.out.println(message.getSender().getUsername());
         messages.add(message);
       }
     } catch (SQLException e) {
