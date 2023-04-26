@@ -19,5 +19,11 @@ public class Main extends Application {
     stage.setScene(new Scene(fxmlLoader.load()));
     stage.setTitle("Chatting Client");
     stage.show();
+    stage.setOnCloseRequest(
+        event -> {
+          stage.close();
+          System.exit(0);
+        }
+    );
   }
 }

@@ -309,6 +309,7 @@ public class Controller implements Initializable {
     chatList.getItems().add(groupName);
     chatList.getSelectionModel().select(groupName);
     DataBuffer.groupMap.put(groupName, String.join(",", distinctList));
+    updateMessages(groupName);
   }
 
   /**
